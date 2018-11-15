@@ -7,7 +7,7 @@ ENV \
   HELM_VERSION=v2.11.0 \
   HELMFILE_VERSION=v0.40.1
 
-RUN apk add --update --no-cache ca-certificates \
+RUN apk add --update --no-cache bash curl wget ca-certificates \
   && apk add --update --no-cache --virtual deps curl gettext tar gzip \
   && echo "Installing kubectl version ${KUBECTL_VERSION}" \
   && curl -f -L https://storage.googleapis.com/kubernetes-release/release/${KUBECTL_VERSION}/bin/linux/amd64/kubectl -o /usr/local/bin/kubectl \
@@ -21,3 +21,5 @@ RUN apk add --update --no-cache ca-certificates \
   && curl -f -L https://github.com/roboll/helmfile/releases/download/${HELMFILE_VERSION}/helmfile_linux_amd64 -o usr/local/bin/helmfile \
     && chmod +x /usr/local/bin/helmfile \
   && apk del --purge deps
+
+ENTRYPOINT ["/bin/bash"]
