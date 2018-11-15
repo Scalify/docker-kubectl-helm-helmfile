@@ -21,5 +21,3 @@ RUN apk add --update --no-cache bash curl wget ca-certificates \
   && curl -f -L https://github.com/roboll/helmfile/releases/download/${HELMFILE_VERSION}/helmfile_linux_amd64 -o usr/local/bin/helmfile \
     && chmod +x /usr/local/bin/helmfile \
   && apk del --purge deps
-
-ENTRYPOINT ["/bin/bash"]
